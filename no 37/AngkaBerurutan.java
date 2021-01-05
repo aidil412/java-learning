@@ -1,22 +1,24 @@
-public class AngkaBerurutan {
-  static int ujian() {
-  
-    int angka[] = {3,2,4,5,3,6,7,9};
-	int arrayTerurut[] = new int [angka.length];
-	int inisialJumlah = 1;
-
-		for (int i = 0,i < angka.length; i++){
-		system.out.println (inisialJumlah);
-		int nilai1 = angka [i]
-		
-		if (i < angka.length - 1) {
-			int nilai1Plus1 = angka [i+1];
-		
-		if (nilai1 < nilai1Plus1){
-				inisialJumlah++;
-				}else{
-				arrayTerurut[i] = inisialJumlah;
-				inisialJumlah = 1;
-		}
-	}
+class Main {
+  static int ujian(int[] nums) {
+    if (nums == null || nums.length ==0){
+      return 0;
+    }
+    int n = nums.length;
+    int[] dp = new int [n];
+    int max = 0;
+    
+    for (int i = 0; i < n; i++){
+      for (int j = 0; j < i; j++){
+        if (nums[i] >nums[j]){
+          dp[i] =Math.max(dp[i], dp[j] +1);
+        }
+      }
+      max = Math.max(dp[i], max);
+    }
+    return max + 1;
+  }
+  public static void main (String[] args){
+    int[] nums= {4, 2, 3, 3, 2, 4, 6, 7, 3, 9};
+    System.out.print(ujian(nums));
+  }
 }
